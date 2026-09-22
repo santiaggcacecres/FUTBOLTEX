@@ -14,7 +14,7 @@ class Producto
 
     public function mostrarFicha()
     {
-        echo "==============================<br>";
+        echo "=============================<br>";
         echo "FICHA DE PRODUCTO<br>";
         echo "==============================<br>";
         echo "ID: " . $this->id . " | Nombre: " . $this->nombre . "<br>";
