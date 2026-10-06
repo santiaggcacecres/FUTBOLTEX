@@ -16,7 +16,6 @@ class Ejercicios extends BaseController
         $this->rutinas = new RutinaModel();
     }
 
-    // R: Listar ejercicios
     public function index()
     {
         return view('ejercicios/index', [
@@ -24,7 +23,6 @@ class Ejercicios extends BaseController
         ]);
     }
 
-    // C: Formulario de nuevo registro
     public function nuevo()
     {
         return view('ejercicios/form', [
@@ -33,7 +31,7 @@ class Ejercicios extends BaseController
         ]);
     }
 
-    // C: Procesar guardado
+
     public function guardar()
     {
         $datos = $this->request->getPost(['rutina_id', 'nombre', 'series', 'repeticiones', 'descanso']);
@@ -44,7 +42,7 @@ class Ejercicios extends BaseController
         return redirect()->to('/ejercicios')->with('mensaje', 'Ejercicio registrado correctamente.');
     }
 
-    // U: Cargar datos para edición
+
     public function editar(int $id)
     {
         return view('ejercicios/form', [
@@ -53,7 +51,6 @@ class Ejercicios extends BaseController
         ]);
     }
 
-    // U: Guardar cambios
     public function actualizar(int $id)
     {
         $this->buscar($id);
@@ -65,7 +62,7 @@ class Ejercicios extends BaseController
         return redirect()->to('/ejercicios')->with('mensaje', 'Ejercicio actualizado con éxito.');
     }
 
-    // D: Eliminar registro
+
     public function eliminar(int $id)
     {
         $this->buscar($id);
