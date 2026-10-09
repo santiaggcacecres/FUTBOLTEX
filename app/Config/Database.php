@@ -29,7 +29,7 @@ class Database extends Config
         'hostname'     => '127.0.0.1',
         'username'     => 'root',
         'password'     => '',
-        'database'     => 'tienda_db',
+        'database'     => 'futboltex_db',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,

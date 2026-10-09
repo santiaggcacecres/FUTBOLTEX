@@ -19,10 +19,11 @@ class Auth extends BaseController
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
+        // Se cambia la clave 'password' por 'password_hash' para la BD
         $model->insert([
-            'nombre' => $nombre,
-            'email' => $email,
-            'password' => password_hash($password, PASSWORD_DEFAULT)
+            'nombre'        => $nombre,
+            'email'         => $email,
+            'password_hash' => password_hash($password, PASSWORD_DEFAULT)
         ]);
 
         return redirect()->to('/login');
@@ -42,12 +43,12 @@ class Auth extends BaseController
 
         $usuario = $model->where('email', $email)->first();
 
-        if ($usuario && password_verify($password, $usuario['password'])) {
+        if ($usuario && password_verify($password, $usuario['password_hash'])) {
 
             session()->set([
-                'id' => $usuario['id'],
-                'nombre' => $usuario['nombre'],
-                'email' => $usuario['email'],
+                'id'       => $usuario['id_usuario'],
+                'nombre'   => $usuario['nombre'],
+                'email'    => $usuario['email'],
                 'logueado' => true
             ]);
 
