@@ -10,7 +10,7 @@
 
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>🏋️‍♂️ Panel de Ejercicios</h1>
+        <h1> Panel de Ejercicios</h1>
         <a href="<?= site_url('ejercicios/nuevo') ?>" class="btn btn-primary">+ Nuevo Ejercicio</a>
     </div>
 
