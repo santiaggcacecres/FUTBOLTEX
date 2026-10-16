@@ -11,7 +11,7 @@
 <div class="container mt-5" style="max-width: 600px;">
     <div class="card shadow">
         <div class="card-header bg-dark text-white">
-            <h3 class="card-title mb-0"><?= $editando ? '📝 Editar Ejercicio' : '💪 Agregar Nuevo Ejercicio' ?></h3>
+            <h3 class="card-title mb-0"><?= $editando ? ' Editar Ejercicio' : 'Agregar Nuevo Ejercicio' ?></h3>
         </div>
         <div class="card-body p-4">
 

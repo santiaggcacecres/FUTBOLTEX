@@ -19,10 +19,5 @@ $routes->get('/logout', 'Auth::logout');
 $routes->get('/home', 'Home::index');
 
 $routes->group('ejercicios', ['filter' => 'auth'], static function ($routes) {
-    $routes->get('', 'Ejercicios::index');
-    $routes->get('nuevo', 'Ejercicios::nuevo');
-    $routes->post('guardar', 'Ejercicios::guardar');
-    $routes->get('editar/(:num)', 'Ejercicios::editar/$1');
-    $routes->post('actualizar/(:num)', 'Ejercicios::actualizar/$1');
-    $routes->post('eliminar/(:num)', 'Ejercicios::eliminar/$1');
+    $routes->get('ejercicios', 'Exercises::exercices');
 });
