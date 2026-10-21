@@ -10,22 +10,34 @@ class Auth extends BaseController
     {
         return view('auth/register');
     }
+public function guardarRegistro()
+{
+    // 1. Definir reglas de validación obligatorias
+    $reglas = [
+        'nombre'   => 'required|min_length[3]',
+        'email'    => 'required|valid_email',
+        'password' => 'required|min_length[6]'
+    ];
 
-    public function guardarRegistro()
-    {
-        $model = new UserModel();
+    // 2. Validar los datos del POST
+    if (!$this->validate($reglas)) {
+        // Si falla, volvés a la vista mostrando los errores
+        return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+    }
 
-        $nombre = $this->request->getPost('nombre');
-        $email = $this->request->getPost('email');
-        $password = $this->request->getPost('password');
+    // 3. Si pasa la validación, tomamos los datos de forma segura
+    $model = new UserModel();
 
-        // Se cambia la clave 'password' por 'password_hash' para la BD
-        $model->insert([
-            'nombre'        => $nombre,
-            'email'         => $email,
-            'password_hash' => password_hash($password, PASSWORD_DEFAULT)
-        ]);
+    $nombre   = $this->request->getPost('nombre');
+    $email    = $this->request->getPost('email');
+    $password = $this->request->getPost('password');
 
+    // 4. Insertar en la base de datos
+    $model->insert([
+        'nombre'   => $nombre,
+        'email'    => $email,
+        'password' => password_hash($password, PASSWORD_DEFAULT)
+    ]);
         return redirect()->to('/login');
     }
 
@@ -43,7 +55,7 @@ class Auth extends BaseController
 
         $usuario = $model->where('email', $email)->first();
 
-        if ($usuario && password_verify($password, $usuario['password_hash'])) {
+        if ($usuario && password_verify($password, $usuario['password'])) {
 
             session()->set([
                 'id'       => $usuario['id_usuario'],
@@ -52,7 +64,7 @@ class Auth extends BaseController
                 'logueado' => true
             ]);
 
-            return redirect()->to('/home');
+            return redirect()->to('/index');
         }
 
         return redirect()->back()->with('error', 'Email o contraseña incorrectos');

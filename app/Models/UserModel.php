@@ -12,7 +12,7 @@ class UserModel extends Model
     protected $allowedFields = [
         'nombre',
         'email',
-        'password_hash'
+        'password'
     ];
 
     protected $useTimestamps = false;
